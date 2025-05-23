@@ -1,0 +1,126 @@
+<div class="container pb-5 d-flex flex-column justify-content-between min-vh-100">
+
+  <div class="mt-5">
+  <form *ngIf="!formSubmitted"
+        [formGroup]="orderForm"
+        (ngSubmit)="submitOrder()"
+        class="row g-4 w-100 mx-auto"
+        style="max-width: 720px;">
+
+    <div class="col-12">
+      <label class="form-label">Товар</label>
+      <input type="text" class="form-control bg-light" formControlName="product">
+    </div>
+
+    <div class="col-md-6">
+      <label for="form-name" class="form-label">Имя</label>
+      <input type="text"
+             id="form-name"
+             class="form-control"
+             formControlName="name"
+             [ngClass]="{'is-invalid': name?.invalid && (name?.touched || name?.dirty)}">
+
+      <div *ngIf="name?.invalid && (name?.touched || name?.dirty)">
+        <div class="invalid-feedback" *ngIf="name?.errors?.['required']">
+          Заполните поле
+        </div>
+        <div class="invalid-feedback" *ngIf="name?.errors?.['pattern']">
+          Можно вводить только буквы
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Фамилия</label>
+      <input type="text" class="form-control" formControlName="last_name"
+             [ngClass]="{'is-invalid': last_name?.invalid && (last_name?.touched || last_name?.dirty)}">
+
+      <div *ngIf="last_name?.invalid && (last_name?.touched || last_name?.dirty)">
+        <div class="invalid-feedback" *ngIf="last_name?.errors?.['required']">
+          Заполните поле
+        </div>
+        <div class="invalid-feedback" *ngIf="last_name?.errors?.['pattern']">
+          Можно вводить только буквы
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Телефон</label>
+      <input type="tel" class="form-control" formControlName="phone"
+             [ngClass]="{'is-invalid': phone?.invalid && (phone?.touched || phone?.dirty)}">
+
+      <div *ngIf="phone?.touched || phone?.dirty">
+        <div class="invalid-feedback" *ngIf="phone?.errors?.['required']">
+          Заполните поле
+        </div>
+        <div class="invalid-feedback"
+             *ngIf="!phone?.errors?.['required'] && phone?.errors?.['invalidPhone']">
+          Введите корректный номер: 11 цифр, может начинаться с +
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Страна</label>
+      <input type="text" class="form-control" formControlName="country"
+             [ngClass]="{'is-invalid': country?.invalid && (country?.touched || country?.dirty)}">
+
+      <div *ngIf="country?.invalid && (country?.touched || country?.dirty)">
+        <div class="invalid-feedback" *ngIf="country?.errors?.['required']">
+          Заполните поле
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Индекс</label>
+      <input type="text" class="form-control" formControlName="zip"
+             [ngClass]="{'is-invalid': zip?.invalid && (zip?.touched || zip?.dirty)}">
+
+      <div *ngIf="zip?.invalid && (zip?.touched || zip?.dirty)">
+        <div class="invalid-feedback" *ngIf="zip?.errors?.['required']">
+          Заполните поле
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Адрес</label>
+      <input type="text" class="form-control" formControlName="address"
+             [ngClass]="{'is-invalid': address?.invalid && (address?.touched || address?.dirty)}">
+
+      <div *ngIf="address?.invalid && (address?.touched || address?.dirty)">
+        <div class="invalid-feedback" *ngIf="address?.errors?.['required']">
+          Заполните поле
+        </div>
+        <div class="invalid-feedback"
+             *ngIf="address?.errors?.['pattern']">
+          Адрес может содержать буквы, цифры, пробелы, дефис и слеш
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Комментарий к заказу</label>
+      <textarea class="form-control" formControlName="comment" rows="3"></textarea>
+    </div>
+
+    <div class="col-12 text-center mt-3">
+      <button type="submit" class="btn btn-success btn-lg px-5" [disabled]="isSubmitting">{{ isSubmitting ? 'Отправка...' : 'Отправить' }}</button>
+      <div *ngIf="submissionError" class="text-danger mt-2">
+        Произошла ошибка. Попробуйте ещё раз.
+      </div>
+    </div>
+  </form>
+  </div>
+  <div *ngIf="formSubmitted"
+       class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+    <div class="text-center p-5 bg-white rounded-4 shadow border border-success-subtle">
+      <h2 class="text-success fw-bold mb-3">Спасибо за заказ!</h2>
+      <p class="text-muted">Мы скоро с вами свяжемся для подтверждения.</p>
+      <a routerLink="/" class="btn btn-outline-success mt-4">На главную</a>
+    </div>
+  </div>
+
+</div>

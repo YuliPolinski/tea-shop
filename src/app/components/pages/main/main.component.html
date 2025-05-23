@@ -1,0 +1,13 @@
+<div class="carousel mb-5 mt-5 wow animate__backInRight text-center">
+  <div>
+    <img src="assets/images/maintea.png" alt="tea">
+  </div>
+</div>
+<h2 class="text-center my-5 fw-bold">Ответы на часто задаваемые вопросы</h2>
+<app-faq></app-faq>
+<div *ngIf="showPopup" class="popup-overlay" (click)="closePopup()">
+  <div class="popup-content shadow-lg rounded-4 border border-success-subtle" (click)="$event.stopPropagation()">
+    <h3 class="mb-3 text-success-emphasis">Посмотрите наши чайные коллекции</h3>
+    <button routerLink="/catalog" class="btn btn-success btn-lg px-4">Смотреть</button>
+  </div>
+</div>

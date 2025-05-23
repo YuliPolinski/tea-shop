@@ -1,0 +1,23 @@
+<div class="container-lg pt-4 pb-5 mt-5">
+  <h1 class="text-center mt-4 mb-5 fw-bold">Наши чайные коллекции</h1>
+
+  <div *ngIf="isLoading" class="text-center my-5">Секундочку, уже загружаем чай...</div>
+
+  <div *ngIf="!isLoading && teas.length" class="row row-cols-lg-3 row-cols-1 row-cols-md-2 g-4 mb-4">
+    <div class="col" *ngFor="let tea of teas">
+      <div class="card h-100">
+        <a [href]="tea.image" target="_blank" class="popup-link">
+          <img [src]="tea.image" class="card-img-top" [alt]="tea.name">
+        </a>
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title fw-bold text-center mb-5">{{ tea.title }}</h5>
+          <a [routerLink]="['/product', tea.id]" class="btn btn-success mt-auto">Подробнее</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !teas.length" class="text-center text-muted">
+    Товары не найдены.
+  </div>
+</div>
