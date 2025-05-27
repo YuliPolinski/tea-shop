@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TeaService} from '../../../services/tea.service';
 import {ActivatedRoute} from "@angular/router";
 import {SearchProductService} from "../../../services/search-product.service";
+import {Tea} from "../../../models/tea.model";
 
 @Component({
   selector: 'app-catalog',
@@ -9,10 +10,10 @@ import {SearchProductService} from "../../../services/search-product.service";
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
-  teas: any[] = [];
-  isLoading = true;
-  notFound = false;
-  currentSearch = '';
+  teas: Tea[] = [];
+  isLoading: boolean = true;
+  notFound: boolean = false;
+  currentSearch: string = '';
 
   constructor(
     private teaService: TeaService,

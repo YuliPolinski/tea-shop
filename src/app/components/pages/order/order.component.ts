@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import {FormOrder, OrderResponse} from "../../../models/order.model";
+import {OrderService} from "../../../services/order.service";
 
 @Component({
   selector: 'app-order',
@@ -8,9 +9,9 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./order.component.scss']
 })
 export class OrderComponent implements OnInit {
-  formSubmitted = false;
-  submissionError = false;
-  isSubmitting = false;
+  formSubmitted: boolean = false;
+  submissionError: boolean = false;
+  isSubmitting: boolean = false;
   productTitle: string = '';
 
 
@@ -38,7 +39,7 @@ export class OrderComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient
+    private orderService: OrderService
   ) {
   }
 
@@ -67,13 +68,13 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const state = history.state;
-    if (state && state.productTitle) {
-      this.productTitle = state.productTitle;
-      this.orderForm.get('product')?.setValue(state.productTitle);
+
+    const storedProductTitle = localStorage.getItem('productTitle');
+    if (storedProductTitle) {
+      this.productTitle = storedProductTitle;
+      this.orderForm.get('product')?.setValue(storedProductTitle);
     }
   }
-
 
   submitOrder(): void {
     if (this.orderForm.invalid) {
@@ -83,11 +84,9 @@ export class OrderComponent implements OnInit {
 
     this.isSubmitting = true;
 
-    const orderData = {
-      ...this.orderForm.getRawValue()
-    };
+    const orderData: FormOrder = this.orderForm.getRawValue() as FormOrder;
 
-    this.http.post<any>('https://testologia.ru/order-tea', orderData).subscribe({
+    this.orderService.submitOrder(orderData).subscribe({
       next: (response) => {
         this.isSubmitting = false;
 

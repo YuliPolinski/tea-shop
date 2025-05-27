@@ -1,6 +1,7 @@
-import { Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {SearchProductService} from "../../../services/search-product.service";
 import {Router} from "@angular/router";
+import {Tea} from "../../../models/tea.model";
 
 @Component({
   selector: 'app-header',
@@ -10,15 +11,16 @@ import {Router} from "@angular/router";
 export class HeaderComponent {
 
   searchQuery = '';
-  suggestions: any[] = [];
+  suggestions: Tea[] = [];
 
-  constructor(private router: Router, private searchProductService: SearchProductService) {}
+  constructor(private router: Router, private searchProductService: SearchProductService) {
+  }
 
-  submitSearch() {
+  submitSearch(): void {
     if (this.searchQuery.trim()) {
       this.searchProductService.setSearch(this.searchQuery);
       this.router.navigate(['/catalog'], {
-        queryParams: { search: this.searchQuery }
+        queryParams: {search: this.searchQuery}
       });
       this.suggestions = [];
     }
@@ -32,7 +34,7 @@ export class HeaderComponent {
     }
   }
 
-  selectSuggestion(title: string) {
+  selectSuggestion(title: string): void {
     this.searchQuery = title;
     this.submitSearch();
   }

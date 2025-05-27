@@ -26,8 +26,7 @@ export class ProductComponent implements OnInit {
   }
 
   goToOrder(): void {
-    this.router.navigate(['/order'], {
-      state: { productTitle: this.product.title }
-    });
+    localStorage.setItem('productTitle', this.product.title);
+    this.router.navigate(['/order']);
   }
 }

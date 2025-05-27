@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, OnDestroy {
-  showPopup = false;
+  showPopup: boolean = false;
   private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
