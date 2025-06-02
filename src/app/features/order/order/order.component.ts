@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, ValidationErrors, Validators} from '@angular/forms';
 import {FormOrder, OrderResponse} from "../../../models/order.model";
-import {OrderService} from "../../../services/order.service";
+import {OrderService} from "../../../core/services/order.service";
 
 @Component({
   selector: 'app-order',

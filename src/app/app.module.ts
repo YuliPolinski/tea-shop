@@ -6,31 +6,29 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from "./components/pages/main/main.component";
-import { CatalogComponent } from './components/pages/catalog/catalog.component';
-import { ProductComponent } from './components/pages/product/product.component';
-import { OrderComponent } from './components/pages/order/order.component';
-import { HeaderComponent } from './components/common/header/header.component';
-import { FooterComponent } from './components/common/footer/footer.component';
-import { FaqComponent } from './components/pages/faq/faq.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared/shared.module';
+import {CoreModule} from "./core/core.module";
+import {FooterComponent} from "./shared/layout/footer/footer.component";
+import {HeaderComponent} from "./shared/layout/header/header.component";
+import { LayoutComponent } from './features/layout.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MainComponent,
-    CatalogComponent,
-    ProductComponent,
-    OrderComponent,
-    HeaderComponent,
     FooterComponent,
-    FaqComponent
+    HeaderComponent,
+    AppComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    SharedModule,
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,7 @@ import { Subject, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-main',
+  selector: 'app-home',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })

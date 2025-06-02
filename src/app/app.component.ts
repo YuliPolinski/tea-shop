@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TeaService } from './services/tea.service';
-import { SearchProductService } from './services/search-product.service';
+import { TeaService } from './core/services/tea.service';
+import { SearchProductService } from './core/services/search-product.service';
 
 @Component({
   selector: 'app-root',

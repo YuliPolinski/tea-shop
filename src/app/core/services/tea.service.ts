@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Tea} from "../models/tea.model";
+import {Tea} from "../../models/tea.model";
 
 @Injectable({
   providedIn: 'root'

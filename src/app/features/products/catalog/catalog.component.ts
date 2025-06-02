@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {TeaService} from '../../../services/tea.service';
+import {TeaService} from '../../../core/services/tea.service';
 import {ActivatedRoute} from "@angular/router";
-import {SearchProductService} from "../../../services/search-product.service";
+import {SearchProductService} from "../../../core/services/search-product.service";
 import {Tea} from "../../../models/tea.model";
 
 @Component({

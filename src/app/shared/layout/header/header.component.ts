@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {SearchProductService} from "../../../services/search-product.service";
+import {SearchProductService} from "../../../core/services/search-product.service";
 import {Router} from "@angular/router";
 import {Tea} from "../../../models/tea.model";
 
